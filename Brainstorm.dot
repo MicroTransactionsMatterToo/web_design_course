@@ -1,0 +1,73 @@
+digraph "D" {
+  compound=true;
+  nodesep=1.5;
+  concentrate=true;
+  splines=true;
+  overlap=true;
+  group=true;
+  // Base elements
+  home[shape=box,fillcolor=blue,style=filled,label="Home Page",xlabel="/index.html"];
+  musicGallery[shape=circle,fillcolor=brown1,style=filled,label="Music",xlabel="/music.html"];
+  albums[shape=folder,fillcolor=bisque,style=filled,label="Albums",xlabel="/albums.html"];
+  about[shape=box,fillcolor=cadetblue1,style=filled,label="About",xlabel="/about.html"];
+  // DB's
+  sqldb[shape=box3d,style=filled,fillcolor=orange,label="Database"];
+  mdb[shape=box3d,style=filled,fillcolor=green,label="MongoDB"];
+  // Template elements
+  subgraph cluster_PT {
+      label="Templates/Re-used elements";
+      pt_Footer[shape=rectangle,fillcolor=lightgreen,style=filled,label="Footer"];
+      pt_Post[shape=underline,label="Post"];
+      pt_Navbar[shape=rectangle,fillcolor=lightblue,style=filled,label="Navbar"];
+  }
+  // Navbar elements
+  subgraph cluster_NB {
+    label="Navbar";
+    nb_About[shape=rectangle,fillcolor=goldenrod,style=filled,label="About"];
+    nb_Albums[shape=rect,fillcolor=darkturquoise,style=filled,label="Albums"];
+    nb_Music[shape=rect,fillcolor=darkseagreen,style=filled,label="Music"];
+    nb_Home[shape=square,fillcolor=antiquewhite,style=filled,label="Home"];
+  }
+
+  // Footer elements
+  subgraph cluster_FT {
+    label="Footer";
+    ft_ToTop[shape=rect,fillcolor=burlywood1,style=filled,label="Back to Top"];
+    ft_Copyright[shape=septagon,fillcolor=firebrick1,style=filled,label="Copyright Notice"];
+  }
+
+  // Post elements
+  subgraph cluster_PST {
+    label="Post";
+    pst_Title[shape=underline,label="Title Text"];
+    pst_Content[shape=box,label="Post Content"];
+    pst_Edit[shape=cds,label="Edit Post"];
+    pst_Comments[shape=component,label="Comments"];
+    // Order from top to bottom
+    {
+      pst_Title -> pst_Content -> pst_Edit -> pst_Comments [style=invisible,arrowhead=none,minlen=1.0];
+    }
+  }
+
+  // Order
+  home -> musicGallery -> albums -> about [style=invis,minlen=0.1]
+  // Relations
+  in1 [shape=point,width=0.01,height=0.01];
+  mdb -> in1 [arrowhead=none,dir=none,group="dblinks"];
+  in1 -> {pst_Content;pst_Title;pst_Comments} [group="dblinks"];
+
+  pt_Navbar:e -> nb_About:e [lhead=cluster_NB];
+  pt_Footer:s -> ft_ToTop:n [lhead=cluster_FT];
+  pt_Post -> pst_Title:n [lhead=cluster_PST];
+
+  nb_Home -> home:n;
+  nb_Music -> musicGallery:ne;
+  nb_Albums -> albums;
+  nb_About -> about;
+
+  intermediate_node [shape=point,width=0.01,height=0.01];
+  {musicGallery;albums;about;home;} -> intermediate_node:n [dir=none, group="snake"];
+  intermediate_node -> pt_Navbar:w [label="1"];
+  intermediate_node -> pt_Footer [label="1"];
+  home:s -> pt_Post:n;
+}
