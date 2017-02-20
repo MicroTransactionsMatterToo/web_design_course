@@ -21,6 +21,8 @@ While there is a standard for a relation database, the DB implemented for this w
 
 The NoSQL database will be used to store blobbed picture files, post pages, and binary data. Users will be stored in a MySQL db, solely for the purpose of the database standard.
 
+---
+###### 2017-02-21
 
 # Context Consideration
 
@@ -37,4 +39,4 @@ Not too regularly, but Rhys may use it for blogging type updates.
 Access to well collated and organised music that Rhys has made, as well as giving Rhys a decent jumping off point into the industry
 
 ### How to test it/keep info private
-There won't be much client-side stored info, but the normal practices will still hold true. I will (try) to get an SSL certificate using [LetsEncrypt](https://letsencrypt.org/), so that information from my site can't be used in CSF (Cross Site Request Forgery), or other attacks primarily relying on unencrypted communications. As there won't be user-accounts, except for the administration side of things, I'll just need to make sure that the system is secure
+There won't be much client-side stored info, but the normal practices will still hold true. I will (try) to get an SSL certificate using [LetsEncrypt](https://letsencrypt.org/), so that information from my site can't be used in CSF (Cross Site Request Forgery), or other attacks primarily relying on unencrypted communications. As there won't be user-accounts, except for the administration side of things, I'll just need to make sure that the system is secure]

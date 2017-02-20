@@ -16,7 +16,7 @@ digraph "D" {
   // Template elements
   subgraph cluster_PT {
       label="Templates/Re-used elements";
-      pt_Footer[shape=rectangle,fillcolor=lightgreen,style=filled,label="Footer"];
+      pt_Footer[shape=rectangle,fillcolor=lightyellow,style=filled,label="Footer"];
       pt_Post[shape=underline,label="Post"];
       pt_Navbar[shape=rectangle,fillcolor=lightblue,style=filled,label="Navbar"];
   }
